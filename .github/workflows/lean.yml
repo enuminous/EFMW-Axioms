@@ -9,9 +9,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: leanprover/lean-action@v1
-      - run: lake build
-      - name: Reject placeholders
+
+      - name: Install Lean
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: false
+
+      - name: Resolve dependencies
+        run: lake update
+
+      - name: Build formalization
+        run: lake build
+
+      - name: Reject proof placeholders
         run: |
           if grep -RInE '\b(sorry|admit)\b' EFMWAxioms; then
             echo "Found proof placeholder"
