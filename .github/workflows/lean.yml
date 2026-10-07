@@ -1,0 +1,19 @@
+name: Lean
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+      - run: lake build
+      - name: Reject placeholders
+        run: |
+          if grep -RInE '\b(sorry|admit)\b' EFMWAxioms; then
+            echo "Found proof placeholder"
+            exit 1
+          fi
