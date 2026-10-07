@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EFMW Axioms — Reconstruction, Formalization, and Scientific Status</title>
+<meta name="description" content="A reconstruction of the March 6, 2025 EFMW axioms: historical formulas, dimensional audit, corrected mathematical surrogates, and Lean 4 formalization.">
+<style>
+:root{--bg:#071018;--panel:#0d1824;--panel2:#122131;--ink:#edf4fb;--muted:#9fb0c3;--line:#294053;--cyan:#8ed9ff;--gold:#ffd28a;--green:#9de7b3;--red:#ffaaa5;--violet:#c2b6ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 15% -10%,rgba(58,127,170,.18),transparent 30%),radial-gradient(circle at 90% 0,rgba(128,90,200,.10),transparent 30%),var(--bg);color:var(--ink);font:17px/1.7 Georgia,"Times New Roman",serif}
+a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:1180px;margin:auto;padding:28px 22px 80px}
+nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font:600 .9rem/1.2 system-ui,sans-serif;margin-bottom:40px}.brand{margin-right:auto;color:#fff;letter-spacing:.08em}
+.hero{padding:52px 0 38px;border-bottom:1px solid var(--line)}.eyebrow{font:800 .75rem/1.2 system-ui,sans-serif;letter-spacing:.17em;text-transform:uppercase;color:var(--gold)}
+h1{font-size:clamp(3rem,7vw,6.5rem);line-height:.92;letter-spacing:-.055em;margin:.18em 0 .22em;max-width:1000px}h2{font-size:2.15rem;line-height:1.15;margin:2.2em 0 .6em;letter-spacing:-.025em}h3{font:800 1rem/1.3 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.12em;color:var(--cyan)}
+.deck{max-width:910px;color:#cad7e7;font-size:1.3rem;line-height:1.5}.byline{font: .9rem/1.5 system-ui,sans-serif;color:var(--muted);margin-top:22px}
+article{max-width:900px;margin:0 auto}.drop:first-letter{float:left;font-size:5rem;line-height:.75;padding:.08em .08em 0 0;color:var(--gold)}
+.callout,.statusbox{margin:30px 0;padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.callout{border-left:4px solid var(--gold)}.statusbox{border-left:4px solid var(--green)}
+.eq{margin:22px 0;padding:18px 20px;border-radius:12px;border:1px solid var(--line);background:var(--panel2);font-size:1.18rem;text-align:center;overflow:auto}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}.card{padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.card b{font:800 1.55rem/1 system-ui,sans-serif;display:block;margin-bottom:8px}.card span{color:var(--muted);font: .88rem/1.45 system-ui,sans-serif}
+table{width:100%;border-collapse:collapse;margin:28px 0;background:var(--panel);border:1px solid var(--line)}th,td{padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{font:800 .78rem/1.3 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--cyan);background:#101c2a}td{font-size:.95rem}.tag{display:inline-block;padding:2px 8px;border-radius:999px;font:700 .74rem/1.4 system-ui,sans-serif;border:1px solid var(--line);white-space:nowrap}.good{color:var(--green)}.warn{color:var(--gold)}.bad{color:var(--red)}.formal{color:var(--violet)}
+.axiom{margin:42px 0;padding-top:12px;border-top:1px solid var(--line)}.axiom h3{margin-bottom:10px}.original{color:#dce6f2}.surrogate{padding:16px 18px;border-radius:12px;background:rgba(142,217,255,.06);border:1px solid #27475c;margin:14px 0}.surrogate strong{color:var(--cyan)}
+.code{font: .9rem/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;background:#07101a;padding:14px 16px;border:1px solid var(--line);border-radius:10px;overflow:auto}
+.refs{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px;font-family:system-ui,sans-serif}.refs a{border:1px solid var(--line);padding:9px 12px;border-radius:999px;background:var(--panel)}
+footer{max-width:900px;margin:58px auto 0;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font: .85rem/1.55 system-ui,sans-serif}
+@media(max-width:780px){.grid{grid-template-columns:1fr}.wrap{padding:18px 14px 60px}table{font-size:.85rem;display:block;overflow:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <div class="brand">EFMW · AXIOMS</div>
+  <a href="#paper">Paper</a>
+  <a href="#axioms">12 Items</a>
+  <a href="EFMWAxioms/Axioms.lean">Lean</a>
+  <a href="README.md">README</a>
+  <a href="https://github.com/enuminous/EFMW-Axioms">GitHub</a>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">Historical reconstruction · mathematical formalization · scientific boundary</div>
+  <h1>From Axiom Sheet to Testable Structure</h1>
+  <p class="deck">The March 6, 2025 EFMW axioms mixed physical intuition, standard formulas, speculative claims, and dimensionally incomplete equations. This reconstruction preserves the ideas while refusing to pretend that malformed expressions are established physics.</p>
+  <div class="byline">Matthew Chenoweth Wright · reconstructed and formally typed with GPT-5.6 Sol · October 6, 2026</div>
+</header>
+
+<article id="paper">
+  <p class="drop">A scientific axiom is not made stronger by calling it fundamental. It becomes stronger when its variables are typed, its dimensions are coherent, its assumptions are explicit, and its consequences can fail against observation.</p>
+
+  <p>The original EFMW axiom sheet was written in March 2025 as an ambitious attempt to name a physics beyond the Standard Model: residual cosmic rotation, self-stabilizing gravitational systems, information conservation, scale-spanning quantum gravity, reciprocity, entanglement, emergent mass, horizon structure, vacuum geometry, and feedback.</p>
+
+  <p>Read historically, it is valuable. Read literally as a finished physical theory, it is not. Several equations add quantities with incompatible units; several symbols are undefined; some formulas reproduce standard expressions with extra terms whose dimensions are unspecified; and some conceptual claims are much stronger than the mathematics written beneath them.</p>
+
+  <div class="callout"><strong>The correction made here is methodological:</strong> preserve each historical claim, replace each malformed equation with a precise mathematical surrogate that captures the intended logical content, and let Lean verify only the consequences of those explicit assumptions.</div>
+
+  <div class="grid">
+    <div class="card"><b>12</b><span>historical axioms and corollaries formally represented</span></div>
+    <div class="card"><b>0</b><span>claims that Lean proves are laws of nature</span></div>
+    <div class="card"><b>1</b><span>clean standard for every item: typed assumptions → theorem → empirical test</span></div>
+  </div>
+
+  <h2>What Lean can and cannot do here</h2>
+
+  <p>Lean can prove that a consequence follows from a definition or assumption. If we define “residual rotation” as a function whose asymptotic angular velocity tends to a nonzero value, Lean can preserve that proposition and prove trivial or nontrivial consequences from it. Lean cannot infer from syntax that the universe actually rotates.</p>
+
+  <p>This distinction is especially important in foundational physics. Machine checking protects logical structure. It does not replace dimensional analysis, measurement, model comparison, or independent replication.</p>
+
+  <div class="statusbox">
+    <strong>Formal status:</strong> every item below now has a typed Lean structure in <code>EFMWAxioms/Axioms.lean</code>. These are mathematical surrogates for the intended claims, not validations of the original physical assertions.
+  </div>
+
+  <h2 id="axioms">The twelve reconstructed claims</h2>
+
+  <table>
+    <thead><tr><th>#</th><th>Historical claim</th><th>2025 formula status</th><th>2026 formal target</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Residual Universal Rotation</td><td><span class="tag good">Mathematically meaningful</span></td><td>Nonzero asymptotic rotational observable</td></tr>
+      <tr><td>2</td><td>Hierarchical Self-Stabilization</td><td><span class="tag bad">Index/meaning mismatch</span></td><td>Bounded trajectory / invariant region</td></tr>
+      <tr><td>3</td><td>QG Information Conservation</td><td><span class="tag warn">Correction term underdefined</span></td><td>Time-independent information functional</td></tr>
+      <tr><td>4</td><td>Scale-Invariant Quantum Gravity</td><td><span class="tag bad">Equation does not encode claim</span></td><td>Invariant dimensionless strength under rescaling</td></tr>
+      <tr><td>5</td><td>Energy-Momentum Reciprocity</td><td><span class="tag bad">Dimensionally inconsistent</span></td><td>Symmetric effective coupling</td></tr>
+      <tr><td>6</td><td>Causal Entanglement</td><td><span class="tag bad">Dimensionally inconsistent</span></td><td>Universal primitive relation on modeled points</td></tr>
+      <tr><td>7</td><td>Gravito-Quantum Coupling</td><td><span class="tag warn">Hamiltonian dimensions unspecified</span></td><td>Quantum generator proportional to curvature observable</td></tr>
+      <tr><td>8</td><td>Mass-Energy Emergence</td><td><span class="tag warn">Types unspecified</span></td><td>Mass as derivative of underlying potential</td></tr>
+      <tr><td>9</td><td>Gravitational Time-Delay Uncertainty</td><td><span class="tag good">Structurally repairable</span></td><td>Nonnegative lower bound on modeled Δt</td></tr>
+      <tr><td>10</td><td>Horizon Invariance</td><td><span class="tag warn">Entropy correction underdefined</span></td><td>Matching descriptions at an interface</td></tr>
+      <tr><td>11</td><td>Quantum Foam Vacuum Structure</td><td><span class="tag bad">Terms have incompatible units</span></td><td>Discrete periodic vacuum toy observable</td></tr>
+      <tr><td>12</td><td>Causal Feedback Loops</td><td><span class="tag bad">Same mismatch as #6</span></td><td>Update map preserving admissible states</td></tr>
+    </tbody>
+  </table>
+
+  <section class="axiom">
+    <h3>1 · Residual Universal Rotation</h3>
+    <p class="original">Historical form: <strong>lim<sub>t→∞</sub> dθ/dt ≠ 0</strong>.</p>
+    <p>This is the cleanest statement in the 2025 list. It says an angular observable approaches a nonzero residual rather than decaying completely. It is mathematically definite, though it remains an empirical cosmological hypothesis.</p>
+    <div class="surrogate"><strong>Lean surrogate:</strong> a function <em>ω(t)</em> with a limit <em>ω∞</em>, together with proofs that <em>ω(t) → ω∞</em> and <em>ω∞ ≠ 0</em>.</div>
+  </section>
+
+  <section class="axiom">
+    <h3>2 · Hierarchical Self-Stabilization in N-Body Systems</h3>
+    <p class="original">Historical form: <strong>Σ rᵢ(t) = Cᵢe<sup>iωt</sup></strong>.</p>
+    <p>The displayed equation does not express the stated claim: the left-hand side sums over <em>i</em> while the right still carries <em>i</em>, and bounded chaos or an attractor manifold is nowhere represented.</p>
+    <div class="surrogate"><strong>Lean surrogate:</strong> a trajectory in a normed state space constrained inside a finite radius. This captures boundedness without pretending to have solved the N-body problem.</div>
+  </section>
+
+  <section class="axiom">
+    <h3>3 · Quantum-Gravitational Information Conservation</h3>
+    <p class="original">Historical form combines Bekenstein-Hawking entropy with <strong>α/λ²</strong>.</p>
+    <p>The black-hole entropy term is meaningful; the added correction requires α to carry specific dimensions. The deeper intended claim is conservation of total information.</p>
+    <div class="surrogate"><strong>Lean surrogate:</strong> an information functional that is equal at every modeled time.</div>
+  </section>
+
+  <section class="axiom">
+    <h3>4 · Scale-Invariant Quantum Gravity</h3>
+    <p class="original">Historical form: <strong>Gh/c³ = x + y + z</strong>.</p>
+    <p>This equality does not encode scale invariance and leaves the right-hand variables undefined.</p>
+    <div class="surrogate"><strong>Lean surrogate:</strong> a dimensionless strength invariant under every positive rescaling of its argument.</div>
+  </section>
+
+  <section class="axiom">
+    <h3>5 · Universal Energy-Momentum Reciprocity</h3>
+    <p class="original">Historical form: <strong>E + mc² = Gh/λ</strong>.</p>
+    <p>The two sides do not carry the same SI dimensions. Rather than repair the formula by invention, the formalization preserves the word “reciprocity” as symmetry of an effective coupling.</p>
+    <div class="surrogate"><strong>Lean surrogate:</strong> coupling(x,y) = coupling(y,x).</div>
+  </section>
+
+  <section class="axiom">
+    <h3>6 · Causal Entanglement in Spacetime</h3>
+    <p class="original">Historical form: <strong>J = h/λ + Gm/r³</strong>.</p>
+    <p>The summed terms have incompatible dimensions. The physical claim itself is also much stronger than standard quantum nonlocality statements.</p>
+    <div class="surrogate"><strong>Lean surrogate:</strong> a primitive relation in which every modeled pair of points is related. This captures the logical assertion without claiming ordinary spacetime is empirically known to satisfy it.</div>
+  </section>
+
+  <section class="axiom">
+    <h3>7 · Gravito-Quantum Coupling</h3>
+    <p>The original Hamiltonian expression does not transparently have energy dimensions. The formal idea can nevertheless be stated cleanly.</p>
+    <div class="surrogate"><strong>Lean surrogate:</strong> quantumGenerator(x) = κ · curvature(x).</div>
+  </section>
+
+  <section class="axiom">
+    <h3>8 · Mass-Energy Emergence from Spacetime</h3>
+    <p>The 2025 equation mixes mass, a time derivative of an unspecified S, and a Laplacian term without typed fields.</p>
+    <div class="surrogate"><strong>Lean surrogate:</strong> a scalar mass function represented as the derivative of an underlying potential. This is a formal emergence relation, not a replacement for the Higgs mechanism.</div>
+  </section>
+
+  <section class="axiom">
+    <h3>9 · Gravitational Time-Delay Uncertainty</h3>
+    <p>The original factor Gm/c³ has time dimensions, and the bracket can be dimensionless if λ is a length. This is one of the more structurally coherent historical formulas, though the proposed minimum uncertainty is unverified.</p>
+    <div class="surrogate"><strong>Lean surrogate:</strong> Δt(x) is bounded below by a nonnegative gravitationally defined scale.</div>
+  </section>
+
+  <section class="axiom">
+    <h3>10 · Black-Hole Horizon Invariance</h3>
+    <p>The original text reused the entropy formula from Axiom 3, while the prose described the horizon as an interface. Those are different claims.</p>
+    <div class="surrogate"><strong>Lean surrogate:</strong> the inside and outside effective descriptions agree at a designated interface point.</div>
+  </section>
+
+  <section class="axiom">
+    <h3>11 · Quantum Foam Structure in Vacuum Energy</h3>
+    <p>The terms inside the original vacuum-energy parentheses do not share units. The geometric-lattice idea is therefore formalized separately from that formula.</p>
+    <div class="surrogate"><strong>Lean surrogate:</strong> a toy vacuum observable on a discrete lattice with a positive period.</div>
+  </section>
+
+  <section class="axiom">
+    <h3>12 · Causal Feedback Loops in Information Exchange</h3>
+    <p>The historical equation duplicated Axiom 6 and did not encode feedback. The corrected mathematical content should contain an update rule.</p>
+    <div class="surrogate"><strong>Lean surrogate:</strong> a state-update map that preserves an admissible set. The repository proves that two successive updates remain admissible.</div>
+  </section>
+
+  <h2>What has actually been proved</h2>
+
+  <p>The Lean file proves consequences such as time-independence of the information functional, symmetry of the reciprocal coupling, boundedness of the modeled trajectory, preservation under feedback updates, and the direct consequences of the other structures.</p>
+
+  <div class="code">lake update
+lake build</div>
+
+  <p>The strongest claim that can honestly be made from a successful build is:</p>
+
+  <div class="callout"><strong>The twelve historical EFMW items now have machine-readable mathematical representations whose stated consequences can be checked by Lean.</strong> That is a formalization result, not a physical validation result.</div>
+
+  <h2>What would make these physics</h2>
+
+  <p>Each formal surrogate needs a second layer before it can become a scientific theory: units, transformation laws, measurable observables, parameter definitions, named comparator models, and prespecified falsification criteria.</p>
+
+  <p>For residual rotation, that means a cosmological model and observational bounds. For bounded N-body behavior, it means a real dynamical theorem under explicit force laws. For information conservation, it means an operational information quantity. For scale invariance, an observable renormalization statement. For gravito-quantum coupling, a unit-correct Hamiltonian or action. For horizon and vacuum claims, coordinate-invariant observables. For feedback and entanglement, experimentally measurable networks rather than metaphor.</p>
+
+  <h2>Conclusion</h2>
+
+  <p>The 2025 EFMW axioms are best understood as a research-generation document. Their historical value lies in the concepts they attempted to connect. Their scientific future depends on refusing to confuse those concepts with finished equations.</p>
+
+  <p>This reconstruction therefore does something deliberately conservative: it keeps the ideas, rejects malformed dimensional equalities as final physics, replaces them with typed mathematical targets, and makes the boundary between assumption, theorem, and observation explicit.</p>
+
+  <p>That is not a retreat from the original ambition. It is the condition under which the ambition can be tested.</p>
+
+  <div class="refs">
+    <a href="EFMWAxioms/Axioms.lean">Lean formalization</a>
+    <a href="EFMWAxioms/Main.lean">Export surface</a>
+    <a href=".github/workflows/lean.yml">CI workflow</a>
+    <a href="README.md">Repository guide</a>
+  </div>
+</article>
+
+<footer>
+  Historical source: “Core Axioms of the EFMW Framework,” March 6, 2025. This reconstruction does not claim that the historical axioms are established laws of nature. Lean verifies only the formal consequences of the explicit reconstructed assumptions.
+</footer>
+</div>
+</body>
+</html>
